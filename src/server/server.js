@@ -1,16 +1,17 @@
 const express = require("express");
 const routes = require("./routes");
 const mongoose = require("mongoose");
-
+const bodyParser = require("body-parser");
 
 const app = express();
 
 const port = 5000;
 
 routes(app);
+app.use(bodyParser.json());
 
 const uri = "mongodb+srv://vincent:vincent@cluster0-ekcxm.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(uri,{
+mongoose.connect(uri, {
   useNewUrlParser: true
 }).then(() => {
   console.info('Connected to Database successfully!');
